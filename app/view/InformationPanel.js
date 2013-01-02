@@ -34,17 +34,20 @@ Ext.define('MyApp.view.InformationPanel', {
 					},{
 						xtype: 'label',
 						text: 'Some Label Text'
-					}]
+					}],
+					collapsed: true
 				}
 				, {
 					xtype: 'panel',
 					title: 'Profit and Loss',
-					titleAlign: 'center'
+					titleAlign: 'center',
+					collapsed: true
 				}
 				, {
 					xtype: 'panel',
 					title: 'Sustainability',
-					titleAlign: 'center'
+					titleAlign: 'center',
+					collapsed: true
 				}
 			]
 		});

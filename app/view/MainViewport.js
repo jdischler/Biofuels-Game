@@ -65,7 +65,7 @@ Ext.define('MyApp.view.MainViewport', {
 							xtype: 'farmHolderPanel'
 						},
 						{
-							xtype: 'metricsPanel'
+							xtype: 'informationPanel'
 
 					}]
 				}]
