@@ -23,17 +23,8 @@ Ext.define('MyApp.view.ContractPanel', {
     		type:'help',
     		qtip: 'Contract Help',
     		handler: function(event, target, owner, tool) {
-    			var helpMessage = "A contract is a legally binding agreement between the producer (farmer) and "
-    			+ "the buyer such that the producer....\n\n" 
-    			+ "If the producer is unable to meet the contract production amounts, the producer must then "
-    			+ "cover the difference at the current spot market price. \n\n"
-    			+ "Any excess product grown by the producer is sold at the spot market price. \n\n";
-    			Ext.Msg.show({
-					title: 'What Are Contracts?',
-					msg: helpMessage,
-					buttons: Ext.Msg.OK,
-					icon: Ext.MessageBox.INFO
-				});
+    			
+    			var help = Ext.create('MyApp.view.ContractHelpWindow').show();
     		}
     }],
     

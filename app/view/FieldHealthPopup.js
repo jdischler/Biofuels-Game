@@ -7,7 +7,6 @@ Ext.define('MyApp.view.FieldHealthPopup', {
     width: 400,
     resizable: false,
     title: 'Field Changes Over Time',
-    titleAlign: 'center',
     titleCollapse: true,
 
     initComponent: function() {

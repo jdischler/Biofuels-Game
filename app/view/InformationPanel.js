@@ -44,10 +44,7 @@ Ext.define('MyApp.view.InformationPanel', {
 					collapsed: true
 				}
 				, {
-					xtype: 'panel',
-					title: 'Sustainability',
-					titleAlign: 'center',
-					collapsed: true
+					xtype: 'sustainabilityPanel'
 				}
 			]
 		});

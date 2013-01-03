@@ -24,8 +24,10 @@ Ext.define('MyApp.view.MainViewport', {
         'MyApp.view.FieldHealthPopup',
         'MyApp.view.InformationPanel',
         'MyApp.view.ContractPanel',
+        'MyApp.view.SustainabilityPanel',
         'MyApp.view.Field',
-        'MyApp.view.Farm'
+        'MyApp.view.Farm',
+        'MyApp.view.ContractHelpWindow'
     ],
 
     autoScroll: true,
