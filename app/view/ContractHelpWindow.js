@@ -1,5 +1,12 @@
+/*
+ * File: app/view/ContractHelpWindow.js
+ */
+	
+//------------------------------------------------------------------------------
 Ext.define('MyApp.view.ContractHelpWindow', {
-    extend: 'Ext.window.Window',
+//------------------------------------------------------------------------------
+
+	extend: 'Ext.window.Window',
 
     height: 300,
     width: 465,
@@ -9,6 +16,7 @@ Ext.define('MyApp.view.ContractHelpWindow', {
     resizable: false,
     bodyStyle: 'background-color:rgb(36,44,57)',
 
+    //--------------------------------------------------------------------------
     initComponent: function() {
    
         var me = this;
@@ -25,109 +33,102 @@ Ext.define('MyApp.view.ContractHelpWindow', {
     	var paragraph3 = "Any excess product grown by the producer is sold at the spot market price.";
     	
         Ext.applyIf(me, {
-            items: [
-                {
-                    xtype: 'panel',
-                    border: showDebugBorders,
-                    height: 100,
-                    width: 400,
-                    layout: {
-                        columns: 3,
-                        type: 'table'
-                    },
-                    items: [
-                        {
-                        	xtype: 'panel',
-                            colspan: 1,
-                            border: showDebugBorders,
-                            height: 100,
-                            width: 100,
-                            padding: '0 10 0 10',
-                            layout: {
-                                type: 'fit'
-                            },
-                            items: [{
-								xtype: 'draw',
-								viewbox: false,
-								colspan: 1,
-								border: showDebugBorders,
-								height: 100,
-								width: 100,
-								items: [{
-									type: 'image',
-									src: 'app/assets/contract_icon.png',
-									width: 100,
-									height: 100
-								}]
-							}]
-                        },
-                        {
-                            xtype: 'panel',
-                            colspan: 2,
-                            border: showDebugBorders,
-                            height: 100,
-                            width: 300,
-                            layout: {
-                                type: 'fit'
-                            },
-                            items: [{
-                            	xtype: 'label',
-                            	text: paragraph1
-                            }]
-                        }
-                    ]
-                },
-                {
-                    xtype: 'panel',
-                    border: showDebugBorders,
-                    height: 100,
-                    width: 400,
-                    layout: {
-                    	align: 'stretch',
-                        type: 'vbox'
-                    },
+            items: [{
+				xtype: 'panel',
+				border: showDebugBorders,
+				height: 100,
+				width: 400,
+				layout: {
+					columns: 3,
+					type: 'table'
+				},
+				items: [{
+					xtype: 'panel',
+					colspan: 1,
+					border: showDebugBorders,
+					height: 100,
+					width: 100,
+					padding: '0 10 0 10',
+					layout: {
+						type: 'fit'
+					},
+					items: [{
+						xtype: 'draw',
+						viewbox: false,
+						colspan: 1,
+						border: showDebugBorders,
+						height: 100,
+						width: 100,
+						items: [{
+							type: 'image',
+							src: 'app/assets/contract_icon.png',
+							width: 100,
+							height: 100
+						}]
+					}]
+				},
+				{
+					xtype: 'panel',
+					colspan: 2,
+					border: showDebugBorders,
+					height: 100,
+					width: 300,
+					layout: {
+						type: 'fit'
+					},
 					items: [{
 						xtype: 'label',
-						text: paragraph2,
-						layout: {
-							type: 'fit'
-						}
-					},{
-						xtype: 'label',
-						padding: 10,
-						layout: {
-							type: 'fit'
-						}
-					},{
-						xtype: 'label',
-						text: paragraph3,
-						layout: {
-							type: 'fit'
-						}
-					}	
-					]
-                },
-                {
-                    xtype: 'panel',
-                    border: showDebugBorders,
-                    height: 50,
-                    width: 400,
-                    layout: {
-                        type: 'fit'
-                    },
-                    bodyPadding: '10 10 10 325',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'OK',
-                            scope: this,
-                            handler: function() {
-                            	this.close();
-                            }
-                        }
-                    ]
-                }
-            ]
+						text: paragraph1
+					}]
+				}]
+			},
+			{
+				xtype: 'panel',
+				border: showDebugBorders,
+				height: 100,
+				width: 400,
+				layout: {
+					align: 'stretch',
+					type: 'vbox'
+				},
+				items: [{
+					xtype: 'label',
+					text: paragraph2,
+					layout: {
+						type: 'fit'
+					}
+				},{
+					xtype: 'label',
+					padding: 10,
+					layout: {
+						type: 'fit'
+					}
+				},{
+					xtype: 'label',
+					text: paragraph3,
+					layout: {
+						type: 'fit'
+					}
+				}]
+			},
+			{
+				xtype: 'panel',
+				border: showDebugBorders,
+				height: 50,
+				width: 400,
+				layout: {
+					type: 'fit'
+				},
+				bodyPadding: '10 10 10 325',
+				items: [{
+					xtype: 'button',
+					text: 'OK',
+					scope: this,
+					handler: function() {
+						this.close();
+					}
+				}]
+			}]
         });
 
         me.callParent(arguments);

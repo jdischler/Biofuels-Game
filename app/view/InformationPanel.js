@@ -1,52 +1,60 @@
+/*
+ * File: app/view/ContractHelpWindow.js
+ */
+	
+//------------------------------------------------------------------------------
 Ext.define('MyApp.view.InformationPanel', {
-    extend: 'Ext.panel.Panel',
+//------------------------------------------------------------------------------
+
+	extend: 'Ext.panel.Panel',
     alias: 'widget.informationPanel',
 
 	height: 700,
 	minWidth: 500,
 	width: 500,
     
+	title: 'Information About Your Farm',
+	titleAlign: 'center',
 	layout: {
 		type: 'accordion',
 		multi: true
 	},
-	title: 'Information About Your Farm',
-	titleAlign: 'center',
     
+    //--------------------------------------------------------------------------
     initComponent: function() {
+    	
         var me = this;
 
         Ext.applyIf(me, {
             items: [{
-            		xtype: 'contractPanel'
-            	},
-            	{
-					xtype: 'panel',
-					title: 'Other',
-					titleAlign: 'center',
-					layout: {
-						type: 'vbox',
-						padding: 8,
-					},
-					items: [{
-						xtype: 'label',
-						text: 'Some Label Text'
-					},{
-						xtype: 'label',
-						text: 'Some Label Text'
-					}],
-					collapsed: true
-				}
-				, {
-					xtype: 'panel',
-					title: 'Profit and Loss',
-					titleAlign: 'center',
-					collapsed: true
-				}
-				, {
-					xtype: 'sustainabilityPanel'
-				}
-			]
+				xtype: 'contractPanel'
+			},
+			{
+				xtype: 'sustainabilityPanel'
+			},
+			{
+				xtype: 'panel',
+				title: 'Profit and Loss',
+				titleAlign: 'center',
+				layout: {
+					type: 'vbox',
+					padding: 8,
+				},
+				items: [{
+					xtype: 'label',
+					text: 'Some Label Text'
+				},{
+					xtype: 'label',
+					text: 'Some Label Text'
+				}],
+				collapsed: true
+			}, 
+			{
+				xtype: 'panel',
+				title: 'Other',
+				titleAlign: 'center',
+				collapsed: true
+			}]
 		});
 		
         me.callParent(arguments);
