@@ -3,28 +3,27 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.MainViewport', {
+Ext.define('Biofuels.view.MainViewport', {
 //------------------------------------------------------------------------------
 
 	extend: 'Ext.container.Viewport',
     requires: [
-        'MyApp.view.CornPlantSprite',
-        'MyApp.view.GrassPlantSprite',
-        'MyApp.view.FarmHolderPanel',
-        'MyApp.view.FieldHealthPopup',
-        'MyApp.view.InformationPanel',
-        'MyApp.view.ContractPanel',
-        'MyApp.view.SustainabilityPanel',
-        'MyApp.view.Field',
-        'MyApp.view.Farm',
-        'MyApp.view.ContractHelpWindow'
+        'Biofuels.view.CornPlantSprite',
+        'Biofuels.view.GrassPlantSprite',
+        'Biofuels.view.FarmHolderPanel',
+        'Biofuels.view.FieldHealthPopup',
+        'Biofuels.view.InformationPanel',
+        'Biofuels.view.ContractPanel',
+        'Biofuels.view.SustainabilityPanel',
+        'Biofuels.view.Field',
+        'Biofuels.view.Farm',
+        'Biofuels.view.ContractHelpWindow',
+        'Biofuels.view.TitlePanel'
     ],
 
     title: 'My Window',
     autoScroll: true,
-    layout: {
-        type: 'fit'
-    },
+    layout: 'fit',
 
 	//--------------------------------------------------------------------------
     initComponent: function() {
@@ -33,20 +32,13 @@ Ext.define('MyApp.view.MainViewport', {
         Ext.applyIf(me, {
             items: [{
 				xtype: 'panel',
-				layout: {
-					type: 'fit'
-				},
+				layout: 'fit',
 				dockedItems: [{
-						xtype: 'panel',
-						dock: 'top',
-						height: 50,
-						width: 200
+					xtype: 'titlePanel',
 				}],
 				items: [{
 					xtype: 'panel',
-					layout: {
-						type: 'column'
-					},
+					layout: 'column',
 					bodyStyle: 'background-image: url(app/assets/site_bg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center top;',
 					items: [{
 							xtype: 'panel',

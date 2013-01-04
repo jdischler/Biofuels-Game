@@ -3,7 +3,7 @@
  */
 	
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.Farm', {
+Ext.define('Biofuels.view.Farm', {
 //------------------------------------------------------------------------------
 
     extend: 'Ext.draw.Component',
@@ -91,7 +91,7 @@ Ext.define('MyApp.view.Farm', {
 	//--------------------------------------------------------------------------
 	addField: function(atX, atY) {
 		
-		var aField = Ext.create('MyApp.view.Field');
+		var aField = Ext.create('Biofuels.view.Field');
 		aField.addSurface(this.surface, atX, atY);
 		
 		aField.atX = atX;

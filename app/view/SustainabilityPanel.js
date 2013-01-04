@@ -3,7 +3,7 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.SustainabilityPanel', {
+Ext.define('Biofuels.view.SustainabilityPanel', {
 //------------------------------------------------------------------------------
 
     extend: 'Ext.panel.Panel',

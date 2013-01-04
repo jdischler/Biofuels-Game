@@ -19,9 +19,8 @@ Ext.Loader.setConfig({
 
 Ext.application({
     views: [
-        'MyWindow',
-        'CornPlant'
+        'MyWindow'
     ],
     autoCreateViewport: true,
-    name: 'MyApp'
+    name: 'Biofuels'
 });

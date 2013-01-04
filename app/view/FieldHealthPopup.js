@@ -3,7 +3,7 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.FieldHealthPopup', {
+Ext.define('Biofuels.view.FieldHealthPopup', {
 //------------------------------------------------------------------------------
 
     extend: 'Ext.window.Window',

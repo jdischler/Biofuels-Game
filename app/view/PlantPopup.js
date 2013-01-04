@@ -3,7 +3,7 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.PlantPopup', {
+Ext.define('Biofuels.view.PlantPopup', {
 //------------------------------------------------------------------------------
 
     createForSurface: function(surface, atX, atY) {

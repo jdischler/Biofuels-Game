@@ -3,7 +3,7 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.CornPlantSprite', {
+Ext.define('Biofuels.view.CornPlantSprite', {
 //------------------------------------------------------------------------------
 
     constructor: function (config) {

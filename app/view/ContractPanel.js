@@ -3,14 +3,11 @@
  */
 	
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.ContractPanel', {
+Ext.define('Biofuels.view.ContractPanel', {
 //------------------------------------------------------------------------------
 
 	extend: 'Ext.panel.Panel',
     alias: 'widget.contractPanel',
-    requires: [
-    	'Ext.window.MessageBox'
-    ],
 
     //--------------------------------------------------------------------------
     height: 255,
@@ -31,7 +28,7 @@ Ext.define('MyApp.view.ContractPanel', {
 		qtip: 'Contract Help',
 		handler: function(event, target, owner, tool) {
 			
-			var help = Ext.create('MyApp.view.ContractHelpWindow').show();
+			var help = Ext.create('Biofuels.view.ContractHelpWindow').show();
 		}
     }],
     

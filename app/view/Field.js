@@ -3,7 +3,7 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.Field', {
+Ext.define('Biofuels.view.Field', {
 //------------------------------------------------------------------------------
 
     constructor: function (config) {
@@ -77,7 +77,7 @@ Ext.define('MyApp.view.Field', {
 				scope: this
 		});
 		
-		this.popup = Ext.create('MyApp.view.PlantPopup');
+		this.popup = Ext.create('Biofuels.view.PlantPopup');
         this.popup.createForSurface(this.surface, atX, atY);
     },
     
@@ -149,7 +149,7 @@ Ext.define('MyApp.view.Field', {
 			var rAtX = cx + this.atX + 12; 
 			var rAtY = cy + this.atY - 20;
 			
-			var aCorn = Ext.create('MyApp.view.CornPlantSprite');
+			var aCorn = Ext.create('Biofuels.view.CornPlantSprite');
 			aCorn.addToSurface(surface, rAtX, rAtY, 1000 + Math.random() * 500);
 
 			cx += 35;
@@ -170,7 +170,7 @@ Ext.define('MyApp.view.Field', {
 			var rAtX = cx + this.atX + 12; 
 			var rAtY = cy + this.atY - 20;
 			
-			var aGrass = Ext.create('MyApp.view.GrassPlantSprite');
+			var aGrass = Ext.create('Biofuels.view.GrassPlantSprite');
 			aGrass.addToSurface(surface, rAtX, rAtY, 1200 + Math.random() * 800);
 
 			cx += 35;

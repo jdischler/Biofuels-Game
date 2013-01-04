@@ -3,12 +3,12 @@
  */
 
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.Viewport', {
+Ext.define('Biofuels.view.Viewport', {
 //------------------------------------------------------------------------------
 
-    extend: 'MyApp.view.MainViewport',
+    extend: 'Biofuels.view.MainViewport',
     requires: [
-        'MyApp.view.MainViewport'
+        'Biofuels.view.MainViewport'
     ],
     renderTo: Ext.getBody()
     

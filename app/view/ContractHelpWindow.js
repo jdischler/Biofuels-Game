@@ -3,7 +3,7 @@
  */
 	
 //------------------------------------------------------------------------------
-Ext.define('MyApp.view.ContractHelpWindow', {
+Ext.define('Biofuels.view.ContractHelpWindow', {
 //------------------------------------------------------------------------------
 
 	extend: 'Ext.window.Window',
