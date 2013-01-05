@@ -170,7 +170,7 @@ Ext.define('Biofuels.view.Farm', {
     onClick: function(evt, target) {
     	
     	if (!this.popupWindow) {
-    		this.popupWindow = Ext.create('MyApp.view.FieldHealthPopup');
+    		this.popupWindow = Ext.create('Biofuels.view.FieldHealthPopup');
     		this.popupWindow.on({
 				close: function(window, eOpts) {
 					this.popupWindow = null;
