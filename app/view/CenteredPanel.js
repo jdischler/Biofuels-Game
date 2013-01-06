@@ -35,13 +35,17 @@ var p = Ext.create('Ext.Panel', {
 });
 </code></pre>
  */
-Ext.define('Ext.ux.layout.Center', {
+Ext.define('Biofuels.view.CenteredPanel', {
 		
     extend: 'Ext.layout.container.Fit',
     alias: 'layout.ux.center',
     
 	// private
-    setItemSize : function(item, width, height){
+    setItemSize : function(item, width, height) {
+    	item.setSize(width, height);
+    }
+    
+/*    setItemSize : function(item, width, height){
         this.owner.addCls('ux-layout-center');
         item.addCls('ux-layout-center-item');
         if(item && height > 0) {
@@ -53,7 +57,7 @@ Ext.define('Ext.ux.layout.Center', {
             }
             item.setSize(width, height);
         }
-
     }
+*/  
 });
 

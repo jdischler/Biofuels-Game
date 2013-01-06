@@ -10,8 +10,6 @@ Ext.define('Biofuels.view.InformationPanel', {
     alias: 'widget.informationPanel',
 
 	height: 700,
-	minWidth: 500,
-	width: 500,
     
 	title: 'Information About Your Farm',
 	titleAlign: 'center',

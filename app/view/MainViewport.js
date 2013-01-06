@@ -18,7 +18,8 @@ Ext.define('Biofuels.view.MainViewport', {
         'Biofuels.view.Field',
         'Biofuels.view.Farm',
         'Biofuels.view.ContractHelpWindow',
-        'Biofuels.view.TitlePanel'
+        'Biofuels.view.ProgressPanel',
+        'Biofuels.view.RoundStageBar'
     ],
 
     title: 'My Window',
@@ -26,30 +27,69 @@ Ext.define('Biofuels.view.MainViewport', {
     layout: 'fit',
 
 	//--------------------------------------------------------------------------
+/*    initComponent: function() {
+        var me = this;        
+        
+        Ext.applyIf(me, {
+            items: [{
+				xtype: 'panel',
+				layout: {
+					type: 'vbox',
+					align: 'center'
+				},
+				bodyStyle: 'background-image: url(app/assets/site_bg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center top;',
+				items: [{
+					xtype: 'titlePanel',
+					width: 1000,
+					height: 60
+				},{
+					xtype: 'panel',
+					layout: {
+						type: 'column'
+					},
+					width: 1000,
+					items: [{
+						xtype: 'farmHolderPanel',	
+						columnWidth: 0.5
+					},{
+						xtype: 'informationPanel',
+						columnWidth: 0.5
+					}]
+				}]
+			}]
+        });
+
+        me.callParent(arguments);
+    }
+*/
+	//--------------------------------------------------------------------------
     initComponent: function() {
         var me = this;        
         
         Ext.applyIf(me, {
             items: [{
 				xtype: 'panel',
-				layout: 'fit',
-				dockedItems: [{
-					xtype: 'titlePanel',
-				}],
+				layout: {
+					type: 'vbox',
+					align: 'center'
+				},
+				bodyStyle: 'background-image: url(app/assets/site_bg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center top;',
 				items: [{
 					xtype: 'panel',
 					layout: 'column',
-					bodyStyle: 'background-image: url(app/assets/site_bg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center top;',
+					width: 1000,
 					items: [{
-							xtype: 'panel',
-							columnWidth: 0.5
-						},
-						{
+						xtype: 'panel',
+						columnWidth: 0.5,
+						layout: 'fit',
+						items: [{
+							xtype: 'progressPanel',
+						},{
 							xtype: 'farmHolderPanel'
-						},
-						{
-							xtype: 'informationPanel'
-
+						}]
+					},{
+						xtype: 'informationPanel',
+						columnWidth: 0.5
 					}]
 				}]
 			}]
@@ -59,3 +99,7 @@ Ext.define('Biofuels.view.MainViewport', {
     }
     
 });
+
+
+// fit panel to viewport - add background -- it does layouts that are centered vboxes
+// -- 

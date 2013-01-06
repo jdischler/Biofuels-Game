@@ -17,7 +17,7 @@ Ext.define('Biofuels.view.Field', {
 		var paths = [{        
 			type: 'rect',
 			width: 160,
-			height: 160,
+			height: 120,
 			radius: 10,
 			x: atX,
 			y: atY,
@@ -31,7 +31,7 @@ Ext.define('Biofuels.view.Field', {
 			x: atX,
 			y: atY,
 			width: 160,
-			height: 160,
+			height: 120,
 		}];
 		
     	this.surface = surface;
@@ -44,7 +44,7 @@ Ext.define('Biofuels.view.Field', {
 			result[index].show(true);
 		}
 		
-		this.addPlantingIcons(surface, atX + 15, atY + 125);
+		this.addPlantingIcons(surface, atX + 15, atY + 85);
     },
     
     //--------------------------------------------------------------------------
@@ -145,9 +145,9 @@ Ext.define('Biofuels.view.Field', {
     	var cx = 0;
     	var cy = 0;
     	
-		for (var corns = 0; corns < 20; corns++ ) {
+		for (var corns = 0; corns < 16; corns++ ) {
 			var rAtX = cx + this.atX + 12; 
-			var rAtY = cy + this.atY - 20;
+			var rAtY = cy + this.atY - 22;
 			
 			var aCorn = Ext.create('Biofuels.view.CornPlantSprite');
 			aCorn.addToSurface(surface, rAtX, rAtY, 1000 + Math.random() * 500);
@@ -166,9 +166,9 @@ Ext.define('Biofuels.view.Field', {
     	var cx = 0;
     	var cy = 0;
     	
-		for (var grass = 0; grass < 18; grass++ ) {
+		for (var grass = 0; grass < 14; grass++ ) {
 			var rAtX = cx + this.atX + 12; 
-			var rAtY = cy + this.atY - 20;
+			var rAtY = cy + this.atY - 22;
 			
 			var aGrass = Ext.create('Biofuels.view.GrassPlantSprite');
 			aGrass.addToSurface(surface, rAtX, rAtY, 1200 + Math.random() * 800);

@@ -11,13 +11,10 @@ Ext.define('Biofuels.view.FarmHolderPanel', {
 
     frame: false,
     height: 700,
-    width: 500,
-    preserveRatio: true,
+//    width: 500,
     title: 'Your Farm',
     titleAlign: 'center',
-    layout: {
-        type: 'fit'
-    },
+    layout: 'fit',
 
     tools:[{
 		type:'help',

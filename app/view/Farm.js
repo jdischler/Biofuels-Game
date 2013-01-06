@@ -22,7 +22,7 @@ Ext.define('Biofuels.view.Farm', {
 	FIELD_START_Y: 30,
 	
 	FIELD_SPACE_X: 200,
-	FIELD_SPACE_Y: 190,
+	FIELD_SPACE_Y: 160,
 	
 	HEALTH_ICON_SIZE: 50,
 
@@ -33,7 +33,7 @@ Ext.define('Biofuels.view.Farm', {
         // specifies the location as the center of the icon
         // NOTE: here because relies on this.vars being fully init'd?
         this.HEALTH_ICON_X = this.FARM_WIDTH / 2;
-        this.HEALTH_ICON_Y = this.FARM_HEIGHT - 15;
+        this.HEALTH_ICON_Y = this.FARM_HEIGHT - 105;
         
         Ext.applyIf(me, {
             items: [{
