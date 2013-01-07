@@ -168,13 +168,26 @@ Ext.define('Biofuels.view.Farm', {
 	
     //-----------------------------------------------------------------------
     onClick: function(evt, target) {
+
+    	var maxNumYears = 0;
+		for (var index = 0; index < this.fields.length; index++ ) {
+			var result = this.fields[index].getNumYears();
+			if (result > maxNumYears) {
+				maxNumYears = result;
+			}
+		}
     	
     	if (!this.popupWindow) {
+    		this.showFieldHealth();
     		this.popupWindow = Ext.create('Biofuels.view.FieldHealthPopup');
+    		this.popupWindow.setSliderNumYears(maxNumYears);
+    		this.popupWindow.setSliderCallback(this.onDrag, this.onChange, this);
+    		
     		this.popupWindow.on({
 				close: function(window, eOpts) {
 					this.popupWindow = null;
 					this.healthIcon.show(true);
+					this.hideFieldHealth();
 				},
 				scope: this 
     		});
@@ -189,6 +202,37 @@ Ext.define('Biofuels.view.Farm', {
     		y -= (this.popupWindow.getHeight() * 0.5);
     		this.popupWindow.setPosition(x, y);
     	}
+	},
+	
+    //-----------------------------------------------------------------------
+	showFieldHealth: function() {
+		
+		for (var index = 0; index < this.fields.length; index++ ) {
+			this.fields[index].showUnderlay();
+		}
+	},		
+
+	//-----------------------------------------------------------------------
+	hideFieldHealth: function() {
+		
+		for (var index = 0; index < this.fields.length; index++ ) {
+			this.fields[index].hideUnderlay();
+		}
+	},
+	
+	onDrag: function(slider) {
+		this.setFieldYear(slider.getValue());
+	},
+	onChange: function(slider) {
+		this.setFieldYear(slider.getValue());
+	},
+	
+	//-----------------------------------------------------------------------
+	setFieldYear: function(newYear) {
+		
+		for (var index = 0; index < this.fields.length; index++ ) {
+			this.fields[index].setYear(newYear);
+		}
 	}
 
 });

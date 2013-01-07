@@ -9,6 +9,8 @@ Ext.define('Biofuels.view.Field', {
     constructor: function (config) {
         this.crop = new Array();
         this.cropType = "none";
+        this.health = new Array();
+        this.health.push('#ff0');
     },
     
     //--------------------------------------------------------------------------
@@ -34,6 +36,18 @@ Ext.define('Biofuels.view.Field', {
 			height: 120,
 		}];
 		
+		var underlay = [{
+			type: 'rect',
+			width: 160,
+			height: 120,
+			radius: 10,
+			x: atX,
+			y: atY,
+			fill: '#f00',
+			opacity: 0.0,
+			zIndex: 500
+		}];
+		
     	this.surface = surface;
     	this.atX = atX;
     	this.atY = atY;
@@ -43,6 +57,10 @@ Ext.define('Biofuels.view.Field', {
 		for (var index = 0; index < result.length; index++) {
 			result[index].show(true);
 		}
+		
+		result = surface.add(underlay);
+		this.underlay = result[0];
+		this.underlay.show(true);
 		
 		this.addPlantingIcons(surface, atX + 15, atY + 85);
     },
@@ -159,6 +177,14 @@ Ext.define('Biofuels.view.Field', {
 			}
 			this.crop.push(aCorn);
 		}
+		
+		// TEMP
+		if (this.health.length <= 1) {
+			this.health.push('#f00');
+		}
+		else {
+			this.health[1] = '#f00';
+		}
 	},
 	
     //--------------------------------------------------------------------------
@@ -181,7 +207,59 @@ Ext.define('Biofuels.view.Field', {
 			}
 			this.crop.push(aGrass);
 		}
-	}       
+		
+		// TEMP
+		if (this.health.length <= 1) {
+			this.health.push('#0f0');
+		}
+		else {
+			this.health[1] = '#0f0';
+		}
+	},       
 
+	// Return the number of years of history for this field
+    //--------------------------------------------------------------------------
+    getNumYears: function() {
+    	return this.health.length;
+    },
+    
+    //--------------------------------------------------------------------------
+    setYear: function(newYear) {
+    	
+    	var index = (this.health.length - 1) + newYear;
+    	
+    	console.log(index);
+    	if (index >= 0 && index < this.health.length) {
+    		this.underlay.stopAnimation().animate({
+    				duration: 100,
+    				to: {
+    					fill: this.health[index]
+    				}
+    		});
+    	}
+    },
+    
+    //--------------------------------------------------------------------------
+    showUnderlay: function() {
+    	this.underlay.stopAnimation().animate({
+			duration: 500,
+			to: {
+				opacity: 0.75,
+				fill: '#ff0'
+			}
+    	});
+
+    },
+    
+    //--------------------------------------------------------------------------
+    hideUnderlay: function() {
+    	this.underlay.stopAnimation().animate({
+			duration: 750,
+			to: {
+				opacity: 0.0,
+			}
+    	});
+    }
+	
 });
 

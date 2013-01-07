@@ -12,13 +12,15 @@ Ext.define('Biofuels.view.GrassPlantSprite', {
 			type: 'image',
 			src: 'app/assets/grass_plant.png',
 			width: 30,
-			height: 50
+			height: 50,
+			zIndex: 750
 		}],
 		[{
 			type: 'image',
 			src: 'app/assets/grass_plant_2.png',
 			width: 30,
-			height: 50
+			height: 50,
+			zIndex: 750
 		}]);
     },
     
