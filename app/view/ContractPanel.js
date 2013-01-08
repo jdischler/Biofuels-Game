@@ -49,7 +49,7 @@ Ext.define('Biofuels.view.ContractPanel', {
 					xtype: 'label',
 					columnWidth: 0.6,
 					padding: 5,
-					html: 'Must provide <b>500</b> bushels of corn at <b>$100</b> a bushel'
+					html: 'Must provide <b>200</b> metric tons of corn at <b>$300</b> a metric ton.'
 				},
 				{
 					xtype: 'button',
@@ -80,7 +80,7 @@ Ext.define('Biofuels.view.ContractPanel', {
 					xtype: 'label',
 					columnWidth: 0.6,
 					padding: 5,
-					html: 'Must provide <b>500</b> bushels of switchgrass at <b>$100</b> a bushel'
+					html: 'Must provide <b>200</b> metric tons of switchgrass at <b>$200</b> a metric ton.'
 				},
 				{
 					xtype: 'button',

@@ -19,7 +19,9 @@ Ext.define('Biofuels.view.MainViewport', {
         'Biofuels.view.Farm',
         'Biofuels.view.ContractHelpWindow',
         'Biofuels.view.ProgressPanel',
-        'Biofuels.view.RoundStageBar'
+        'Biofuels.view.RoundStageBar',
+        'Biofuels.view.FieldOverlay',
+        'Biofuels.view.FieldData'
     ],
 
     title: 'My Window',

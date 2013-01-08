@@ -32,7 +32,7 @@ Ext.define('Biofuels.view.InformationPanel', {
 			},
 			{
 				xtype: 'panel',
-				title: 'Profit and Loss',
+				title: 'Yields',
 				titleAlign: 'center',
 				layout: {
 					type: 'vbox',
@@ -49,7 +49,7 @@ Ext.define('Biofuels.view.InformationPanel', {
 			}, 
 			{
 				xtype: 'panel',
-				title: 'Other',
+				title: 'Other Metrics',
 				titleAlign: 'center',
 				collapsed: true
 			}]

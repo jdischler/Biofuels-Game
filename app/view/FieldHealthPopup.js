@@ -31,6 +31,7 @@ Ext.define('Biofuels.view.FieldHealthPopup', {
 				bodyPadding: '5 5 8 5',
 				items: [{
 					xtype: 'checkboxfield',
+					itemId: 'soilHealth',
 					padding: '0 0 0 20',
 					colspan: 1,
 					rowspan: 1,
@@ -41,6 +42,7 @@ Ext.define('Biofuels.view.FieldHealthPopup', {
 				},
 				{
 					xtype: 'checkboxfield',
+					itemId: 'yields',
 					padding: '0 0 0 20',
 					colspan: 1,
 					rowspan: 1,
@@ -51,11 +53,13 @@ Ext.define('Biofuels.view.FieldHealthPopup', {
 				},
 				{
 					xtype: 'checkboxfield',
+					itemId: 'crop',
 					colspan: 1,
 					rowspan: 1,
 					width: 125,
 					hideLabel: true,
-					boxLabel: 'Other'
+					boxLabel: 'Crop',
+					checked: true
 				},
 				{
 					xtype: 'slider',
@@ -90,18 +94,55 @@ Ext.define('Biofuels.view.FieldHealthPopup', {
         me.callParent(arguments);
     },
     
-    setSliderCallback: function(drag, change, scope) {
+    //--------------------------------------------------------------------------
+    setCheckboxCallbacks: function(soilHealthCB, yieldsCB, cropCB, scope) {
+    	
+    	var panelBody = this.items.items[0];
+    	
+    	// Soil Health
+       	var check = panelBody.getComponent('soilHealth');
+       	
+    	check.on({
+    		change: soilHealthCB,
+    		scope: scope
+    	});
+    	soilHealthCB.call(scope, check, check.getValue());
+    	
+    	// Yields
+    	check = panelBody.getComponent('yields');
+    	check.on({
+    		change: yieldsCB,
+    		scope: scope
+    	});
+    	yieldsCB.call(scope, check, check.getValue());
+    	
+    	// Crop
+    	check = panelBody.getComponent('crop');
+    	check.on({
+    		change: cropCB,
+    		scope: scope
+    	});
+    	cropCB.call(scope, check, check.getValue());
+    },
+    
+    //--------------------------------------------------------------------------
+    setSliderCallback: function(years, dragCB, changeCB, scope) {
     	
     	var panelBody = this.items.items[0]; 
        	var slider = panelBody.getComponent('yearSlider');
+
+		this.setSliderNumYears(years);
        	
     	slider.on({
-    		drag: drag,
-    		change: change,
+    		drag: dragCB,
+    		change: changeCB,
     		scope: scope
     	});
+    	
+    	changeCB.call(scope, slider);
     },
     
+    //--------------------------------------------------------------------------
     setSliderNumYears: function(maxYears) {
     	
     	// FIXME: there some kind of recursive 'get child by itemId' call??
@@ -125,6 +166,7 @@ Ext.define('Biofuels.view.FieldHealthPopup', {
        		label1.show();
        		label2.show();
        		slider.setMinValue((maxYears - 1) * -1);
+       		slider.setValue(0);
        	}
     }
     

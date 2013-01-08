@@ -88,14 +88,18 @@ Ext.define('Biofuels.view.Farm', {
 		}		
     },        
 
+    // Create a new field object (visual representation + underlying data) then
+    //	attach it to the farm draw surface
 	//--------------------------------------------------------------------------
 	addField: function(atX, atY) {
 		
-		var aField = Ext.create('Biofuels.view.Field');
-		aField.addSurface(this.surface, atX, atY);
-		
-		aField.atX = atX;
-		aField.atY = atY;
+		var aField = {
+			fieldVisuals: Ext.create('Biofuels.view.Field'),
+			fieldData: Ext.create('Biofuels.view.FieldData'),
+			fieldChart: Ext.create('Biofuels.view.FieldOverlay')
+		};
+		aField.fieldVisuals.attachTo(this.surface, atX, atY);
+		aField.fieldChart.attachTo(aField.fieldData, this.surface, atX, atY);
 		
 		this.fields.push(aField);
 		
@@ -169,19 +173,14 @@ Ext.define('Biofuels.view.Farm', {
     //-----------------------------------------------------------------------
     onClick: function(evt, target) {
 
-    	var maxNumYears = 0;
-		for (var index = 0; index < this.fields.length; index++ ) {
-			var result = this.fields[index].getNumYears();
-			if (result > maxNumYears) {
-				maxNumYears = result;
-			}
-		}
+    	var years = this.getNumberSeasons();
     	
     	if (!this.popupWindow) {
-    		this.showFieldHealth();
     		this.popupWindow = Ext.create('Biofuels.view.FieldHealthPopup');
-    		this.popupWindow.setSliderNumYears(maxNumYears);
-    		this.popupWindow.setSliderCallback(this.onDrag, this.onChange, this);
+    		this.popupWindow.setSliderCallback(years, this.onDrag, this.onChange, this);
+    		this.popupWindow.setCheckboxCallbacks(this.soilHealthChanged, 
+    							this.yieldsChanged, 
+    							this.showCropsChanged, this);
     		
     		this.popupWindow.on({
 				close: function(window, eOpts) {
@@ -201,14 +200,44 @@ Ext.define('Biofuels.view.Farm', {
     		x -= (this.popupWindow.getWidth() * 0.5);
     		y -= (this.popupWindow.getHeight() * 0.5);
     		this.popupWindow.setPosition(x, y);
+    		this.setFieldSeason(0);
     	}
 	},
 	
     //-----------------------------------------------------------------------
+	soilHealthChanged: function(self, newValue, oldValue, eOpts) {
+		
+		for (var index = 0; index < this.fields.length; index++ ) {
+			if (newValue == true) {
+				this.fields[index].fieldChart.showSoilHealth();
+			}
+			else {
+				this.fields[index].fieldChart.hideSoilHealth();
+			}
+		}
+	}, 
+	
+    //-----------------------------------------------------------------------
+	yieldsChanged: function(self, newValue, oldValue, eOpts) {
+	}, 
+	
+    //-----------------------------------------------------------------------
+    showCropsChanged: function(self, newValue, oldValue, eOpts) {
+		for (var index = 0; index < this.fields.length; index++ ) {
+			if (newValue == true) {
+				this.fields[index].fieldChart.showCrop();
+			}
+			else {
+				this.fields[index].fieldChart.hideCrop();
+			}
+		}
+    },
+    
+    //-----------------------------------------------------------------------
 	showFieldHealth: function() {
 		
 		for (var index = 0; index < this.fields.length; index++ ) {
-			this.fields[index].showUnderlay();
+//			this.fields[index].fieldVisuals.showUnderlay();
 		}
 	},		
 
@@ -216,22 +245,33 @@ Ext.define('Biofuels.view.Farm', {
 	hideFieldHealth: function() {
 		
 		for (var index = 0; index < this.fields.length; index++ ) {
-			this.fields[index].hideUnderlay();
+			this.fields[index].fieldChart.hide();
 		}
 	},
 	
 	onDrag: function(slider) {
-		this.setFieldYear(slider.getValue());
+		this.setFieldSeason(slider.getValue());
 	},
 	onChange: function(slider) {
-		this.setFieldYear(slider.getValue());
+		this.setFieldSeason(slider.getValue());
 	},
 	
 	//-----------------------------------------------------------------------
-	setFieldYear: function(newYear) {
+	getNumberSeasons: function() {
+		
+		if (this.fields.length <= 0) {
+			return 1;
+		}
+		else {
+			return this.fields[0].fieldData.getNumSeasons();
+		}
+	},
+	
+	//-----------------------------------------------------------------------
+	setFieldSeason: function(newYear) {
 		
 		for (var index = 0; index < this.fields.length; index++ ) {
-			this.fields[index].setYear(newYear);
+			this.fields[index].fieldChart.setCurrentSeason(newYear);
 		}
 	}
 

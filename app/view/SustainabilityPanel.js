@@ -9,7 +9,7 @@ Ext.define('Biofuels.view.SustainabilityPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.sustainabilityPanel',
 
-	title: 'Sustainability',
+	title: 'Rankings',
 	titleAlign: 'center',
 	bodyStyle: 'background-color: #89a;',
     layout: {
@@ -51,7 +51,7 @@ Ext.define('Biofuels.view.SustainabilityPanel', {
 						'data1'
 					],
 					position: 'left',
-					title: 'Rating',
+					title: 'Ranking',
 					grid: true,
 					majorTickSteps: 5,
 					minorTickSteps: 3
