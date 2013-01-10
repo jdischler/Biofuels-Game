@@ -22,7 +22,7 @@ Ext.define('Biofuels.view.PlantPopup', {
     	// Switchgrass
     	var switchGrass = [{        
 			type: 'image',
-			src: 'app/assets/grass_icon.png',
+			src: 'resources/grass_icon.png',
 			x: atX - 25,
 			y: atY - 40,
 			width: 50,
@@ -34,7 +34,7 @@ Ext.define('Biofuels.view.PlantPopup', {
     	// corn
     	var corn = [{        
 			type: 'image',
-			src: 'app/assets/corn_icon.png',
+			src: 'resources/corn_icon.png',
 			x: atX + 25,
 			y: atY - 40,
 			width: 50,
@@ -46,7 +46,7 @@ Ext.define('Biofuels.view.PlantPopup', {
     	// No Crop
     	var noCrop = [{        
 			type: 'image',
-			src: 'app/assets/nothing_icon.png',
+			src: 'resources/nothing_icon.png',
 			x: atX,
 			y: atY,
 			width: 50,

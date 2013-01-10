@@ -29,14 +29,14 @@ Ext.define('Biofuels.view.FieldOverlay', {
 		}]);
 		
 		this.cropSprites = {
-			corn: 'app/assets/corn_icon.png',
-			switchgrass: 'app/assets/grass_icon.png',
-			fallow: 'app/assets/nothing_icon.png'
+			corn: 'resources/corn_icon.png',
+			switchgrass: 'resources/grass_icon.png',
+			fallow: 'resources/nothing_icon.png'
 		};
 
 		this.cropSprite = surface.add([{        
 			type: 'image',
-			src: 'app/assets/corn_icon.png',
+			src: 'resources/corn_icon.png',
 			x: atX-12,
 			y: atY-12,
 			width: 35,

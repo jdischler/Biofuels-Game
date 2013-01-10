@@ -10,14 +10,14 @@ Ext.define('Biofuels.view.GrassPlantSprite', {
     	
     	this.randomSpriteConfigList = Array([{        
 			type: 'image',
-			src: 'app/assets/grass_plant.png',
+			src: 'resources/grass_plant.png',
 			width: 30,
 			height: 50,
 			zIndex: 750
 		}],
 		[{
 			type: 'image',
-			src: 'app/assets/grass_plant_2.png',
+			src: 'resources/grass_plant_2.png',
 			width: 30,
 			height: 50,
 			zIndex: 750

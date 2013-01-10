@@ -75,7 +75,7 @@ Ext.define('Biofuels.view.MainViewport', {
 					type: 'vbox',
 					align: 'center'
 				},
-				bodyStyle: 'background-image: url(app/assets/site_bg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center top;',
+				bodyStyle: 'background-image: url(resources/site_bg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center top;',
 				items: [{
 					xtype: 'panel',
 					layout: 'column',
@@ -102,6 +102,3 @@ Ext.define('Biofuels.view.MainViewport', {
     
 });
 
-
-// fit panel to viewport - add background -- it does layouts that are centered vboxes
-// -- 

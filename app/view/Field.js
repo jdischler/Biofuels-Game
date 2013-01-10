@@ -29,7 +29,7 @@ Ext.define('Biofuels.view.Field', {
 		},
 		{
 			type: 'image',
-			src: 'app/assets/field_overlay.png',
+			src: 'resources/field_overlay.png',
 			x: atX,
 			y: atY,
 			width: 160,
@@ -54,7 +54,7 @@ Ext.define('Biofuels.view.Field', {
     	
     	var path = [{
 			type: 'image',
-			src: 'app/assets/planting_icon.png',
+			src: 'resources/planting_icon.png',
 			x: atX,
 			y: atY,
 			opacity: 0.5,

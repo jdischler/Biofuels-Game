@@ -112,7 +112,7 @@ Ext.define('Biofuels.view.Farm', {
     	
     	var path = [{
 			type: 'image',
-			src: 'app/assets/field_health_icon.png',
+			src: 'resources/field_health_icon.png',
 			x: atX - radius / 2,
 			y: atY - radius / 2,
 			opacity: 0.5,

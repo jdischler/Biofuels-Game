@@ -61,7 +61,7 @@ Ext.define('Biofuels.view.ContractHelpWindow', {
 						width: 100,
 						items: [{
 							type: 'image',
-							src: 'app/assets/contract_icon.png',
+							src: 'resources/contract_icon.png',
 							width: 100,
 							height: 100
 						}]
