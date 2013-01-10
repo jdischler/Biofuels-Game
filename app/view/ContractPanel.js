@@ -36,22 +36,25 @@ Ext.define('Biofuels.view.ContractPanel', {
     initComponent: function() {
         var me = this;
 
+        var clr = "<font color='#ff8'><b>";
+        var cornContractText ="Must provide " + clr + "200</b></font> " +
+        						"metric tons of " + clr + "corn</b></font> at " +
+        						clr + "$300</b></font> a metric ton."; 
+        var grassContractText ="Must provide " + clr + "200</b></font> " +
+        						"metric tons of " + clr + "switchgrass</b></font> at " +
+        						clr + "$200</b></font> a metric ton."; 
         Ext.applyIf(me, {
             items: [{
 				xtype: 'contractoffering',
-				padding: 5,
-				bodyPadding: '5 0 5 10',
 				title: 'Corn Contract',
 				imageSource: 'resources/simple_corn_icon.png',
-				contractText: 'Must provide <b>200</b> metric tons of corn at <b>$300</b> a metric ton.'
+				contractText: cornContractText
 			},
 			{
 				xtype: 'contractoffering',
-				padding: 5,
-				bodyPadding: '5 0 5 10',
 				title: 'Switchgrass Contract',
 				imageSource: 'resources/simple_grass_icon.png',
-				contractText: 'Must provide <b>200</b> metric tons of switchgrass at <b>$200</b> a metric ton.'
+				contractText: grassContractText
 			},
 			{
 				xtype: 'button',

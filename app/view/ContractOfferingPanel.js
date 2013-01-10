@@ -11,6 +11,8 @@ Ext.define('Biofuels.view.ContractOfferingPanel', {
     layout: {
         type: 'absolute'
     },
+    padding: 5,
+	bodyPadding: '5 0 5 10',
 
     //--------------------------------------------------------------------------
     initComponent: function() {
@@ -21,10 +23,10 @@ Ext.define('Biofuels.view.ContractOfferingPanel', {
                 {
                     xtype: 'image',
                     src: this.imageSource,
-                    x: 10,
-                    y: 10,
-                    height: 40,
-                    width: 40
+                    x: 5,
+                    y: 5,
+                    height: 50,
+                    width: 50
                 },
                 {
                     xtype: 'displayfield',

@@ -15,6 +15,11 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	this.atX = atX;
     	this.atY = atY;
     	
+    	this.yieldPos = {
+    		x: atX + 20,
+    		y: atY + 55
+    	};
+    	
     	// Soil 'health' color layer
   		this.underlay = surface.add([{        
 			type: 'rect',
@@ -44,19 +49,30 @@ Ext.define('Biofuels.view.FieldOverlay', {
 			zIndex: 3000
 		}]);
 		
-		var testPath = "M" + (atX + 20) + " " + (atY + 50) +
+		var testPath = "M" + (atX + 20) + " " + (this.yieldPos.y) +
 				"L";
 		
 		var seasonStep = 120 / (this.fieldData.seasons.length-1);
 		
 		for (var index = 0; index < this.fieldData.seasons.length; index++) {
-			testPath += (atX + seasonStep * index + 20)  + " " + (atY + this.fieldData.seasons[index].soil * -2 + 50) + " ";
+			testPath += (this.yieldPos.x + seasonStep * index)  + " " +
+				(this.yieldPos.y + this.fieldData.seasons[index].soil * -2) + " ";
 		}
 		
-		var testGrid1 = "M" + (atX + 20) + " " + (atY + 20) +
-						"v75 h120 v-75";
-		var testGrid2 = "M" + (atX + 20) + " " + (atY + 50) +
+		var testGrid1 = "M" + (this.yieldPos.x) + " " + (atY + 15) +
+						"v85 h120 v-85";
+		var testGrid2 = "M" + (this.yieldPos.x) + " " + (this.yieldPos.y) +
 						"h120";
+		var testGridBg = "M" + (this.yieldPos.x) + " " + (atY + 15) +
+						"v85 h120 v-85z";
+		this.yieldGridBG = surface.add([{
+			type: 'path',
+			path: testGridBg,
+			'stroke-width': 0,
+			fill: '#ffa',
+			opacity: 0.5,
+			zIndex: 4000
+		}]);
 		this.yieldGrid = surface.add([{
 			type: 'path',
 			path: testGrid1,
@@ -73,6 +89,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
 			zIndex: 4500
 		}]);
 		
+			
 		this.yieldPath = surface.add([{
 			type: 'path',
 			path: testPath,
@@ -87,8 +104,8 @@ Ext.define('Biofuels.view.FieldOverlay', {
 			stroke: '#ed3',
 			'stroke-width': 1,
 			fill: '#346',
-			x: (atX + 20),
-			y: (atY + 50),
+			x: (this.yieldPos.x),
+			y: (this.yieldPos.y),
 			zIndex: 6000
 		}]);
     },
@@ -96,26 +113,32 @@ Ext.define('Biofuels.view.FieldOverlay', {
     //--------------------------------------------------------------------------
     showYields: function() {
     	
-    	this.yieldGrid[0].stopAnimation().animate({
+    	this.yieldGrid[0].stopAnimation().show(true).animate({
 			duration: 100,
 			to: {
 				opacity: 0.6
 			}
     	});
-    	this.yieldGrid[1].stopAnimation().animate({
+    	this.yieldGrid[1].stopAnimation().show(true).animate({
 			duration: 100,
 			to: {
-				opacity: 0.2
+				opacity: 0.3
 			}
     	});
-    	this.yieldPath[0].stopAnimation().animate({
+    	this.yieldGridBG[0].stopAnimation().show(true).animate({
+			duration: 100,
+			to: {
+				opacity: 0.5
+			}
+    	});
+    	this.yieldPath[0].stopAnimation().show(true).animate({
 			duration: 100,
 			to: {
 				opacity: 1
 			}
     	});
     	
-    	this.yieldMarker[0].stopAnimation().animate({
+    	this.yieldMarker[0].stopAnimation().show(true).animate({
     		duration: 100,
     		to: {
     			opacity: 1
@@ -124,31 +147,52 @@ Ext.define('Biofuels.view.FieldOverlay', {
     },
 
     //--------------------------------------------------------------------------
+    doHide: function() {
+    	this.hide();
+    },
+    
+    //--------------------------------------------------------------------------
     hideYields: function() {
     	
     	this.yieldGrid[0].stopAnimation().animate({
 			duration: 100,
 			to: {
 				opacity: 0
-			}
+			},
+			callback: this.doHide,
+			scope: this.yieldGrid[0]
     	});
     	this.yieldGrid[1].stopAnimation().animate({
 			duration: 100,
 			to: {
 				opacity: 0
-			}
+			},
+			callback: this.doHide,
+			scope: this.yieldGrid[1]
+    	});
+    	this.yieldGridBG[0].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0
+			},
+			callback: this.doHide,
+			scope: this.yieldGridBG
     	});
     	this.yieldPath[0].stopAnimation().animate({
 			duration: 100,
 			to: {
 				opacity: 0
-			}
+			},
+			callback: this.doHide,
+			scope: this.yieldPath[0]
     	});
     	this.yieldMarker[0].stopAnimation().animate({
     		duration: 100,
     		to: {
     			opacity: 0
-    		}
+			},
+			callback: this.doHide,
+			scope: this.yieldMarker[0]
     	});
     },
     
@@ -275,8 +319,8 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	this.yieldMarker[0].stopAnimation().animate({
 			duration: 200,
 			to: {
-				x: (this.atX + seasonStep * newYear + 20),
-				y: (this.atY + season.soil * -2 + 50)
+				x: (this.yieldPos.x + seasonStep * newYear),
+				y: (this.yieldPos.y + season.soil * -2)
     			}
     	});
 
