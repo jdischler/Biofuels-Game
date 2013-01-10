@@ -11,7 +11,6 @@ Ext.define('Biofuels.view.ProgressPanel', {
 
 	title: 'Round Stage',
 	titleAlign: 'center',
-	height: 100,
 	viewbox: true,
 	tools:[{
 		type:'help',

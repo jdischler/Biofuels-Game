@@ -14,6 +14,7 @@ Ext.define('Biofuels.view.MainViewport', {
         'Biofuels.view.FieldHealthPopup',
         'Biofuels.view.InformationPanel',
         'Biofuels.view.ContractPanel',
+        'Biofuels.view.ContractOfferingPanel',
         'Biofuels.view.SustainabilityPanel',
         'Biofuels.view.Field',
         'Biofuels.view.Farm',
@@ -86,12 +87,21 @@ Ext.define('Biofuels.view.MainViewport', {
 						layout: 'fit',
 						items: [{
 							xtype: 'progressPanel',
+							height: 100
 						},{
-							xtype: 'farmHolderPanel'
+							xtype: 'farmHolderPanel',
+							// width: 500,
+							height: 700,
+							layout: 'fit'
 						}]
 					},{
 						xtype: 'informationPanel',
-						columnWidth: 0.5
+						columnWidth: 0.5,
+						height: 700,
+						layout: {
+							type: 'accordion',
+							multi: true
+						}
 					}]
 				}]
 			}]

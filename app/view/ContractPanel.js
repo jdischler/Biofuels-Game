@@ -1,5 +1,5 @@
 /*
- * File: app/view/ContractHelpWindow.js
+ * File: app/view/ContractPanel.js
  */
 	
 //------------------------------------------------------------------------------
@@ -38,66 +38,20 @@ Ext.define('Biofuels.view.ContractPanel', {
 
         Ext.applyIf(me, {
             items: [{
-				xtype: 'panel',
+				xtype: 'contractoffering',
 				padding: 5,
-				layout: {
-					type: 'column'
-				},
 				bodyPadding: '5 0 5 10',
 				title: 'Corn Contract',
-				items: [{
-					xtype: 'label',
-					columnWidth: 0.6,
-					padding: 5,
-					html: 'Must provide <b>200</b> metric tons of corn at <b>$300</b> a metric ton.'
-				},
-				{
-					xtype: 'button',
-					padding: '10 0 10 0',
-					columnWidth: 0.35,
-					enableToggle: true,
-					scale: 'medium',
-					text: 'Accept Contract?',
-					handler: function(button, evt) {
-						if (button.pressed) {
-							button.setText('Contract Accepted!');
-						}
-						else {
-							button.setText('Accept Contract?');
-						}
-					}
-				}]
+				imageSource: 'resources/simple_corn_icon.png',
+				contractText: 'Must provide <b>200</b> metric tons of corn at <b>$300</b> a metric ton.'
 			},
 			{
-				xtype: 'panel',
+				xtype: 'contractoffering',
 				padding: 5,
-				layout: {
-					type: 'column'
-				},
 				bodyPadding: '5 0 5 10',
 				title: 'Switchgrass Contract',
-				items: [{
-					xtype: 'label',
-					columnWidth: 0.6,
-					padding: 5,
-					html: 'Must provide <b>200</b> metric tons of switchgrass at <b>$200</b> a metric ton.'
-				},
-				{
-					xtype: 'button',
-					padding: '10 0 10 0',
-					columnWidth: 0.35,
-					enableToggle: true,
-					scale: 'medium',
-					text: 'Accept Contract?',
-					handler: function(button, evt) {
-						if (button.pressed) {
-							button.setText('Contract Accepted!');
-						}
-						else {
-							button.setText('Accept Contract?');
-						}
-					}
-				}]
+				imageSource: 'resources/simple_grass_icon.png',
+				contractText: 'Must provide <b>200</b> metric tons of switchgrass at <b>$200</b> a metric ton.'
 			},
 			{
 				xtype: 'button',
