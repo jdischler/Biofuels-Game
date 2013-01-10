@@ -46,7 +46,7 @@ Ext.define('Biofuels.view.Field', {
 			result[index].show(true);
 		}
 		
-		this.addPlantingIcons(toSurface, atX + 15, atY + 85);
+		this.addPlantingIcons(toSurface, atX, atY + 95);
     },
     
     //--------------------------------------------------------------------------
@@ -58,8 +58,8 @@ Ext.define('Biofuels.view.Field', {
 			x: atX,
 			y: atY,
 			opacity: 0.5,
-			width: 50,
-			height: 50,
+			width: 40,
+			height: 40,
 			zIndex: 1000
     	}];
     	

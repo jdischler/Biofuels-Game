@@ -219,6 +219,14 @@ Ext.define('Biofuels.view.Farm', {
 	
     //-----------------------------------------------------------------------
 	yieldsChanged: function(self, newValue, oldValue, eOpts) {
+		for (var index = 0; index < this.fields.length; index++ ) {
+			if (newValue == true) {
+				this.fields[index].fieldChart.showYields();
+			}
+			else {
+				this.fields[index].fieldChart.hideYields();
+			}
+		}
 	}, 
 	
     //-----------------------------------------------------------------------

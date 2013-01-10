@@ -37,7 +37,7 @@ Ext.define('Biofuels.view.ProgressPanel', {
 					type: 'rect',
 					width: 500,
 					height: 80,
-					fill: '#082014'
+					fill: '#163020'
 				}]
 			}]
 		});

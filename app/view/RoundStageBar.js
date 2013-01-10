@@ -58,14 +58,14 @@ Ext.define('Biofuels.view.RoundStageBar', {
     		text: "Contracts",
     		fill: '#000',
     		font: "16px monospace",
-    		x: 32,
+    		x: 40,
     		y: 54
     	},{
     		type: 'text',
     		text: "Contracts",
     		fill: '#fff',
     		font: "16px monospace",
-    		x: 32,
+    		x: 40,
     		y: 52
     	}
     	,
@@ -131,17 +131,17 @@ Ext.define('Biofuels.view.RoundStageBar', {
 			radius: 14
     	},{
     		type: 'text',
-    		text: "Round Wrapup",
+    		text: "Round Wrap-Up",
     		fill: '#000',
     		font: "16px monospace",
-    		x: 360,
+    		x: 355,
     		y: 54
     	},{
     		type: 'text',
-    		text: "Round Wrapup",
+    		text: "Round Wrap-Up",
     		fill: '#fff',
     		font: "16px monospace",
-    		x: 360,
+    		x: 355,
     		y: 52
     	}];
     	

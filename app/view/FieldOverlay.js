@@ -24,6 +24,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
 			x: atX,
 			y: atY,
 			fill: '#ff0',
+			opacity: 0.5,
 			zIndex: 500
 		}]);
 		
@@ -36,12 +37,119 @@ Ext.define('Biofuels.view.FieldOverlay', {
 		this.cropSprite = surface.add([{        
 			type: 'image',
 			src: 'app/assets/corn_icon.png',
-			x: atX,
-			y: atY,
-			width: 50,
-			height: 50,
+			x: atX-12,
+			y: atY-12,
+			width: 35,
+			height: 35,
 			zIndex: 3000
 		}]);
+		
+		var testPath = "M" + (atX + 20) + " " + (atY + 50) +
+				"L";
+		
+		var seasonStep = 120 / (this.fieldData.seasons.length-1);
+		
+		for (var index = 0; index < this.fieldData.seasons.length; index++) {
+			testPath += (atX + seasonStep * index + 20)  + " " + (atY + this.fieldData.seasons[index].soil * -2 + 50) + " ";
+		}
+		
+		var testGrid1 = "M" + (atX + 20) + " " + (atY + 20) +
+						"v75 h120 v-75";
+		var testGrid2 = "M" + (atX + 20) + " " + (atY + 50) +
+						"h120";
+		this.yieldGrid = surface.add([{
+			type: 'path',
+			path: testGrid1,
+			stroke: '#000',
+			'stroke-width': 1,
+			opacity: 0.6,
+			zIndex: 4500
+		},{
+			type: 'path',
+			path: testGrid2,
+			stroke: '#000',
+			'stroke-width': 1,
+			opacity: 0.6,
+			zIndex: 4500
+		}]);
+		
+		this.yieldPath = surface.add([{
+			type: 'path',
+			path: testPath,
+			stroke: "#fff",
+			'stroke-width': 2,
+			zIndex: 5000
+		}]);
+		
+		this.yieldMarker = surface.add([{
+			type: 'circle',
+			radius: 3,
+			stroke: '#ed3',
+			'stroke-width': 1,
+			fill: '#346',
+			x: (atX + 20),
+			y: (atY + 50),
+			zIndex: 6000
+		}]);
+    },
+    
+    //--------------------------------------------------------------------------
+    showYields: function() {
+    	
+    	this.yieldGrid[0].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0.6
+			}
+    	});
+    	this.yieldGrid[1].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0.2
+			}
+    	});
+    	this.yieldPath[0].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 1
+			}
+    	});
+    	
+    	this.yieldMarker[0].stopAnimation().animate({
+    		duration: 100,
+    		to: {
+    			opacity: 1
+    		}
+    	});
+    },
+
+    //--------------------------------------------------------------------------
+    hideYields: function() {
+    	
+    	this.yieldGrid[0].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0
+			}
+    	});
+    	this.yieldGrid[1].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0
+			}
+    	});
+    	this.yieldPath[0].stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0
+			}
+    	});
+    	this.yieldMarker[0].stopAnimation().animate({
+    		duration: 100,
+    		to: {
+    			opacity: 0
+    		}
+    	});
     },
     
     //--------------------------------------------------------------------------
@@ -50,7 +158,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	this.underlay[0].stopAnimation().animate({
 			duration: 100,
 			to: {
-				opacity: 0.75
+				opacity: 0.5
 			}
     	});
 
@@ -97,6 +205,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	
     	this.showSoilHealth();
     	this.showCrop();
+    	this.showYields();
     },
     
     //--------------------------------------------------------------------------
@@ -104,6 +213,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	
     	this.hideSoilHealth();
     	this.hideCrop();
+    	this.hideYields();
     },    
     
     //--------------------------------------------------------------------------
@@ -159,6 +269,17 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	this.cropSprite[0].setAttributes({
     			src: this.cropSprites[season.crop]
     		}, true);
+    
+		var seasonStep = 120 / (this.fieldData.seasons.length-1);
+
+    	this.yieldMarker[0].stopAnimation().animate({
+			duration: 200,
+			to: {
+				x: (this.atX + seasonStep * newYear + 20),
+				y: (this.atY + season.soil * -2 + 50)
+    			}
+    	});
+
     }
 	
 });
