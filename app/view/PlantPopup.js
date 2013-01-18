@@ -13,9 +13,25 @@ Ext.define('Biofuels.view.PlantPopup', {
 			type: 'circle',
 			x: atX + 25,
 			y: atY,
+			radius: 30,
+			fill: '#000',
+			opacity: 0.2,
+			zIndex: 1800
+		},{        
+			type: 'circle',
+			x: atX + 25,
+			y: atY,
+			radius: 50,
+			fill: '#000',
+			opacity: 0.15,
+			zIndex: 1900
+		},{        
+			type: 'circle',
+			x: atX + 25,
+			y: atY,
 			radius: 80,
 			fill: '#000',
-			opacity: 0.05,
+			opacity: 0.15,
 			zIndex: 2000
 		}];
 
@@ -43,10 +59,10 @@ Ext.define('Biofuels.view.PlantPopup', {
 			zIndex: 3000
 		}];
 
-    	// No Crop
-    	var noCrop = [{        
+    	// Cover Crop
+    	var coverCrop = [{        
 			type: 'image',
-			src: 'resources/nothing_icon.png',
+			src: 'resources/cover_crop_icon.png',
 			x: atX,
 			y: atY,
 			width: 50,
@@ -56,7 +72,7 @@ Ext.define('Biofuels.view.PlantPopup', {
 		}];
 		
   		this.bg = surface.add(popupBackground);
-  		this.noCrop = surface.add(noCrop);
+  		this.coverCrop = surface.add(coverCrop);
   		this.grass = surface.add(switchGrass);
   		this.corn = surface.add(corn);
     },
@@ -91,14 +107,16 @@ Ext.define('Biofuels.view.PlantPopup', {
 		}
 
 		// show and set up all the events
-    	this.bg[0].show(true);
-    	this.bg[0].cropTypeClickValue = "cancel";
-		this.bg[0].on({
+		this.bg[0].show(true);
+		this.bg[1].show(true);
+    	this.bg[2].show(true);
+    	this.bg[2].cropTypeClickValue = "cancel";
+		this.bg[2].on({
 				mouseout: this.onPopupMouseOut,
 				click: this.onClick,
 				scope: this});
 		
-		baseInit(this.noCrop[0], this, "none");
+		baseInit(this.coverCrop[0], this, "cover");
 		baseInit(this.grass[0], this, "grass");
 		baseInit(this.corn[0], this, "corn");
     },    
@@ -106,8 +124,10 @@ Ext.define('Biofuels.view.PlantPopup', {
     //--------------------------------------------------------------------------
     hidePopup: function() {
     	// hide all sprites and clear the listen events
-    	this.bg[0].hide(true).clearListeners();
-    	this.noCrop[0].hide(true).clearListeners();
+    	this.bg[0].hide(true);
+    	this.bg[1].hide(true);
+    	this.bg[2].hide(true).clearListeners();
+    	this.coverCrop[0].hide(true).clearListeners();
     	this.grass[0].hide(true).clearListeners();
     	this.corn[0].hide(true).clearListeners();
     },

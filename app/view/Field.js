@@ -8,6 +8,10 @@
 Ext.define('Biofuels.view.Field', {
 //------------------------------------------------------------------------------
 
+	requires: [
+		'Biofuels.view.ToggleSprite'
+	],
+	
     constructor: function (config) {
         this.crop = new Array();
         this.cropType = "none";
@@ -46,11 +50,67 @@ Ext.define('Biofuels.view.Field', {
 			result[index].show(true);
 		}
 		
-		this.addPlantingIcons(toSurface, atX, atY + 95);
+		this.addPlantingIcon(toSurface, atX, atY + 95);
+		this.addManagementIcons(toSurface, atX + 140, atY - 10);
     },
     
     //--------------------------------------------------------------------------
-    addPlantingIcons: function(surface, atX, atY) {
+    addManagementIcons: function(surface, atX, atY) {
+    	
+    	this.fertilizer = Ext.create('Biofuels.view.ToggleSprite');
+    	this.fertilizer.addToSurface(surface, [{        
+			type: 'image',
+			src: 'resources/fertilizer_no_icon.png',
+			x: atX,
+			y: atY,
+			opacity: 0.5,
+			width: 40,
+			height: 40,
+			zIndex: 1000
+		}], 'resources/fertilizer_no_icon.png', 'resources/fertilizer_yes_icon.png');
+
+		this.irrigation = Ext.create('Biofuels.view.ToggleSprite');
+    	this.irrigation.addToSurface(surface, [{        
+			type: 'image',
+			src: 'resources/irrigation_no_icon.png',
+			x: atX,
+			y: atY + 40,
+			opacity: 0.5,
+			width: 40,
+			height: 40,
+			zIndex: 1000
+		}], 'resources/irrigation_no_icon.png', 'resources/irrigation_yes_icon.png');
+
+		this.pesticide = Ext.create('Biofuels.view.ToggleSprite');
+    	this.pesticide.addToSurface(surface, [{        
+			type: 'image',
+			src: 'resources/pesticide_no_icon.png',
+			x: atX,
+			y: atY + 80,
+			opacity: 0.5,
+			width: 40,
+			height: 40,
+			zIndex: 1000
+		}], 'resources/pesticide_no_icon.png', 'resources/pesticide_yes_icon.png');
+		
+    },
+    
+    //--------------------------------------------------------------------------
+    showManagementIcons: function() {
+    	this.fertilizer.show();
+    	this.irrigation.show();
+    	this.pesticide.show();
+    },
+
+    //--------------------------------------------------------------------------
+    hideManagementIcons: function() {
+    	this.fertilizer.hide();
+    	this.irrigation.hide();
+    	this.pesticide.hide();
+    },
+    
+    //--------------------------------------------------------------------------
+    addPlantingIcon: function(surface, atX, atY) {
     	
     	var path = [{
 			type: 'image',
@@ -64,23 +124,57 @@ Ext.define('Biofuels.view.Field', {
     	}];
     	
   		var result = surface.add(path);
-		for (var index = 0; index < result.length; index++) {
-			result[index].show(true);
-		}
+  		this.plantingIcon = result[0];
+		this.plantingIcon.show(true);
 		
-		// Hrm, I guess must add the event on the topmost sprite element?
-		result[0].on({
-				mouseover: this.onMouseOver,
-				mouseout: this.onMouseOut,
-				scope: result[0]
-		});
-		result[0].on({
-				click: this.onClick,
-				scope: this
-		});
+		this.setPlantingIconListeners();
 		
 		this.popup = Ext.create('Biofuels.view.PlantPopup');
         this.popup.createForSurface(this.surface, atX, atY);
+    },
+
+    //--------------------------------------------------------------------------
+	setPlantingIconListeners: function() {
+		
+		this.plantingIcon.on({
+				mouseover: this.onMouseOver,
+				mouseout: this.onMouseOut,
+				scope: this.plantingIcon
+		});
+		this.plantingIcon.on({
+				click: this.onClick,
+				scope: this
+		});
+	},
+	
+    //--------------------------------------------------------------------------
+    showPlantingIcon: function() {
+    	this.plantingIcon.stopAnimation().show(true).animate({
+    		duration: 100,
+    		to: {
+    			opacity: 0.5
+    		}
+    	});
+    	
+		this.setPlantingIconListeners();
+    },
+    
+    //--------------------------------------------------------------------------
+    hidePlantingIcon: function() {
+    	this.plantingIcon.stopAnimation().animate({
+    		duration: 100,
+    		to: {
+    			opacity: 0
+    		},
+    		callback: this.doHide,
+    		scope: this.plantingIcon
+    	});
+    	this.plantingIcon.clearListeners();
+    },
+    
+    //--------------------------------------------------------------------------
+    doHide: function() {
+    	this.hide(true);
     },
     
     //--------------------------------------------------------------------------
@@ -139,6 +233,20 @@ Ext.define('Biofuels.view.Field', {
 	removeOldCrop: function() {
 		for (var index = 0; index < this.crop.length; index++) {
 			this.crop[index].removeFromSurface();
+		}
+	},
+	
+    //--------------------------------------------------------------------------
+	showCrop: function() {
+		for (var index = 0; index < this.crop.length; index++) {
+			this.crop[index].sprite.show(true);
+		}
+	},
+	
+    //--------------------------------------------------------------------------
+	hideCrop: function() {
+		for (var index = 0; index < this.crop.length; index++) {
+			this.crop[index].sprite.hide(true);
 		}
 	},
 	

@@ -41,7 +41,7 @@ Ext.define('Biofuels.view.ContractPanel', {
         						"metric tons of " + clr + "corn</b></font> at " +
         						clr + "$300</b></font> a metric ton."; 
         var grassContractText ="Must provide " + clr + "200</b></font> " +
-        						"metric tons of " + clr + "switchgrass</b></font> at " +
+        						"metric tons of " + clr + "perennial grass</b></font> at " +
         						clr + "$200</b></font> a metric ton."; 
         Ext.applyIf(me, {
             items: [{
@@ -52,7 +52,7 @@ Ext.define('Biofuels.view.ContractPanel', {
 			},
 			{
 				xtype: 'contractoffering',
-				title: 'Switchgrass Contract',
+				title: 'Perennial Grass Contract',
 				imageSource: 'resources/simple_grass_icon.png',
 				contractText: grassContractText
 			},

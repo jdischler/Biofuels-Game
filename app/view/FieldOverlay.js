@@ -15,6 +15,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	this.atX = atX;
     	this.atY = atY;
     	
+    	this.soilScalar = 1.5;
     	this.yieldPos = {
     		x: atX + 20,
     		y: atY + 55
@@ -36,19 +37,39 @@ Ext.define('Biofuels.view.FieldOverlay', {
 		this.cropSprites = {
 			corn: 'resources/corn_icon.png',
 			switchgrass: 'resources/grass_icon.png',
-			fallow: 'resources/nothing_icon.png'
+			coverCrop: 'resources/cover_crop_icon.png'
 		};
 
 		this.cropSprite = surface.add([{        
 			type: 'image',
 			src: 'resources/corn_icon.png',
-			x: atX-12,
-			y: atY-12,
-			width: 35,
-			height: 35,
+			x: atX-15,
+			y: atY-15,
+			width: 40,
+			height: 40,
+			zIndex: 3000
+		}]);
+
+		this.fertilizerSprite = surface.add([{        
+			type: 'image',
+			src: 'resources/fertilizer_yes_icon.png',
+			x: atX-10,
+			y: atY+25,
+			width: 30,
+			height: 30,
 			zIndex: 3000
 		}]);
 		
+		this.irrigationSprite = surface.add([{
+			type: 'image',
+			src: 'resources/irrigation_yes_icon.png',
+			x: atX-10,
+			y: atY+55,
+			width: 30,
+			height: 30,
+			zIndex: 3000
+		}]);
+					
 		var testPath = "M" + (atX + 20) + " " + (this.yieldPos.y) +
 				"L";
 		
@@ -56,7 +77,7 @@ Ext.define('Biofuels.view.FieldOverlay', {
 		
 		for (var index = 0; index < this.fieldData.seasons.length; index++) {
 			testPath += (this.yieldPos.x + seasonStep * index)  + " " +
-				(this.yieldPos.y + this.fieldData.seasons[index].soil * -2) + " ";
+				(this.yieldPos.y + this.fieldData.seasons[index].soil * -this.soilScalar) + " ";
 		}
 		
 		var testGrid1 = "M" + (this.yieldPos.x) + " " + (atY + 15) +
@@ -111,137 +132,81 @@ Ext.define('Biofuels.view.FieldOverlay', {
     },
     
     //--------------------------------------------------------------------------
-    showYields: function() {
+    animateShow: function(object, duration, opacity) {
     	
-    	this.yieldGrid[0].stopAnimation().show(true).animate({
-			duration: 100,
-			to: {
-				opacity: 0.6
-			}
-    	});
-    	this.yieldGrid[1].stopAnimation().show(true).animate({
-			duration: 100,
-			to: {
-				opacity: 0.3
-			}
-    	});
-    	this.yieldGridBG[0].stopAnimation().show(true).animate({
-			duration: 100,
-			to: {
-				opacity: 0.5
-			}
-    	});
-    	this.yieldPath[0].stopAnimation().show(true).animate({
-			duration: 100,
-			to: {
-				opacity: 1
-			}
-    	});
-    	
-    	this.yieldMarker[0].stopAnimation().show(true).animate({
-    		duration: 100,
+    	object.stopAnimation().show(true).animate({
+    		duration: duration,
     		to: {
-    			opacity: 1
+    			opacity: opacity
     		}
     	});
     },
-
+    
     //--------------------------------------------------------------------------
     doHide: function() {
-    	this.hide();
+    	
+    	this.hide(true);
     },
     
     //--------------------------------------------------------------------------
+    animateHide: function(object) {
+    	
+    	object.stopAnimation().animate({
+			duration: 100,
+			to: {
+				opacity: 0
+			},
+			callback: this.doHide,
+			scope: object
+    	});
+    },
+    
+    //--------------------------------------------------------------------------
+    showYields: function() {
+    	
+    	this.animateShow(this.yieldGrid[0], 	100, 0.6);
+    	this.animateShow(this.yieldGrid[1], 	100, 0.3);
+    	this.animateShow(this.yieldGridBG[0], 	100, 0.5);
+    	this.animateShow(this.yieldPath[0], 	100, 1);
+    	this.animateShow(this.yieldMarker[0], 	100, 1);
+    },
+
+    //--------------------------------------------------------------------------
     hideYields: function() {
     	
-    	this.yieldGrid[0].stopAnimation().animate({
-			duration: 100,
-			to: {
-				opacity: 0
-			},
-			callback: this.doHide,
-			scope: this.yieldGrid[0]
-    	});
-    	this.yieldGrid[1].stopAnimation().animate({
-			duration: 100,
-			to: {
-				opacity: 0
-			},
-			callback: this.doHide,
-			scope: this.yieldGrid[1]
-    	});
-    	this.yieldGridBG[0].stopAnimation().animate({
-			duration: 100,
-			to: {
-				opacity: 0
-			},
-			callback: this.doHide,
-			scope: this.yieldGridBG
-    	});
-    	this.yieldPath[0].stopAnimation().animate({
-			duration: 100,
-			to: {
-				opacity: 0
-			},
-			callback: this.doHide,
-			scope: this.yieldPath[0]
-    	});
-    	this.yieldMarker[0].stopAnimation().animate({
-    		duration: 100,
-    		to: {
-    			opacity: 0
-			},
-			callback: this.doHide,
-			scope: this.yieldMarker[0]
-    	});
+    	this.animateHide(this.yieldGrid[0]);
+    	this.animateHide(this.yieldGrid[1]);
+    	this.animateHide(this.yieldGridBG[0]);
+    	this.animateHide(this.yieldPath[0]);
+    	this.animateHide(this.yieldMarker[0]);
     },
     
     //--------------------------------------------------------------------------
     showSoilHealth: function() {
     	
-    	this.underlay[0].stopAnimation().animate({
-			duration: 100,
-			to: {
-				opacity: 0.5
-			}
-    	});
-
+    	this.animateShow(this.underlay[0], 100, 0.5);
     },
 
     //--------------------------------------------------------------------------
     hideSoilHealth: function() {
     	
-    	this.underlay[0].stopAnimation().animate({
-			duration: 100,
-			to: {
-				opacity: 0
-			}
-    	});
-
+    	this.animateHide(this.underlay[0]);
     },
 
     //--------------------------------------------------------------------------
     showCrop: function() {
     	
-    	this.cropSprite[0].stopAnimation().animate({
-			duration: 200,
-			to: {
-				opacity: 1
-			}
-    	});
-
+    	this.animateShow(this.cropSprite[0], 200, 1);
+    	this.animateShow(this.fertilizerSprite[0], 200, 1);
+    	this.animateShow(this.irrigationSprite[0], 200, 1);
     },
 
     //--------------------------------------------------------------------------
     hideCrop: function() {
     	
-    	this.cropSprite[0].stopAnimation().animate({
-			duration: 200,
-			to: {
-				opacity: 0
-			}
-    	});
-
+    	this.animateHide(this.cropSprite[0]);
+    	this.animateHide(this.fertilizerSprite[0]);
+    	this.animateHide(this.irrigationSprite[0]);
     },
 
     //--------------------------------------------------------------------------
@@ -306,7 +271,8 @@ Ext.define('Biofuels.view.FieldOverlay', {
     	this.underlay[0].stopAnimation().animate({
 			duration: 200,
 			to: {
-				fill: fillColor
+				fill: fillColor,
+				opacity: 0.5
 			}
     	});
     	
@@ -320,10 +286,34 @@ Ext.define('Biofuels.view.FieldOverlay', {
 			duration: 200,
 			to: {
 				x: (this.yieldPos.x + seasonStep * newYear),
-				y: (this.yieldPos.y + season.soil * -2)
-    			}
+				y: (this.yieldPos.y + season.soil * -this.soilScalar),
+				opacity: 1
+    		}
     	});
 
+		// fertilizer    	
+    	var targetOpacity = 0;
+    	if (season.fertilizer) {
+    		targetOpacity = 1;
+    	}
+    	this.fertilizerSprite[0].stopAnimation().animate({
+    		duration: 200,
+    		to: {
+    			opacity: targetOpacity
+    		}
+    	});
+    	
+    	// irrigation
+    	targetOpacity = 0;
+    	if (season.irrigation) {
+    		targetOpacity = 1;
+    	}
+    	this.irrigationSprite[0].stopAnimation().animate({
+    		duration: 200,
+    		to: {
+    			opacity: targetOpacity
+    		}
+    	});
     }
 	
 });

@@ -31,7 +31,7 @@ Ext.define('Biofuels.view.ContractOfferingPanel', {
                 {
                     xtype: 'displayfield',
                     x: 60,
-                    y: 10,
+                    y: 0,
                     width: 250,
                     value: this.contractText,
                     fieldLabel: ''

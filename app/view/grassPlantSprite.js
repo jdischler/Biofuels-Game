@@ -30,55 +30,52 @@ Ext.define('Biofuels.view.GrassPlantSprite', {
 		var randomSpriteConfig = this.randomSpriteConfigList[
 				Math.floor(Math.random() * this.randomSpriteConfigList.length)];
 		
-    	// TODO: if this.sprites already exists, clear?
-//    	if (this.sprites
-  		var result = surface.add(randomSpriteConfig);
-  		this.sprites = result;
-		for (var index = 0; index < result.length; index++) {
-			result[index].setAttributes({
-				translate: {
-					x: atX, 
-					y: atY
-				}}, false);
+		if (this.sprite) {
+			this.removeFromSurface();
 		}
-    	for (var index = 0; index < result.length; index++) {
-			result[index].animate({
-				duration: duration,
-				from: {
-					scale: {
-						x: 0.2,
-						y: 0.2
-					},
-					translate: {
-						x: atX,
-						y: atY + 20 * 0.8 
-					}
+		
+  		var result = surface.add(randomSpriteConfig);
+  		this.sprite = result[0];
+		this.sprite.setAttributes({
+			translate: {
+				x: atX, 
+				y: atY
+			}}, false);
+		
+		this.sprite.animate({
+			duration: duration,
+			from: {
+				scale: {
+					x: 0.2,
+					y: 0.2
 				},
-				to: {
-					scale: {
-						x: 1,
-						y: 1
-					},
-					translate: {
-						x: atX,
-						y: atY
-					}
+				translate: {
+					x: atX,
+					y: atY + 20 * 0.8 
 				}
-			});
-    	}    	
+			},
+			to: {
+				scale: {
+					x: 1,
+					y: 1
+				},
+				translate: {
+					x: atX,
+					y: atY
+				}
+			}
+		});
     },
 
+    
     //--------------------------------------------------------------------------
     removeFromSurface: function() {
     	
-    	if (!this.sprites) return;
+    	if (!this.sprite) return;
 
-    	var result = this.sprites;
-    	for (var index = 0; index < result.length; index++) {
-    		// FIXME: Destroy?
-    		result[index].remove();
-    	}
-    	this.sprites = null;
+    	this.sprite.remove();
+    	this.sprite.destroy();
+    	this.sprite = null;
     }
 
 });

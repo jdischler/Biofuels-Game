@@ -176,6 +176,7 @@ Ext.define('Biofuels.view.Farm', {
     	var years = this.getNumberSeasons();
     	
     	if (!this.popupWindow) {
+    		this.hideFieldManagementIcons();
     		this.popupWindow = Ext.create('Biofuels.view.FieldHealthPopup');
     		this.popupWindow.setSliderCallback(years, this.onDrag, this.onChange, this);
     		this.popupWindow.setCheckboxCallbacks(this.soilHealthChanged, 
@@ -184,6 +185,7 @@ Ext.define('Biofuels.view.Farm', {
     		
     		this.popupWindow.on({
 				close: function(window, eOpts) {
+					this.showFieldManagementIcons();
 					this.popupWindow = null;
 					this.healthIcon.show(true);
 					this.hideFieldHealth();
@@ -254,6 +256,28 @@ Ext.define('Biofuels.view.Farm', {
 		
 		for (var index = 0; index < this.fields.length; index++ ) {
 			this.fields[index].fieldChart.hide();
+		}
+	},
+
+	//-----------------------------------------------------------------------
+	showFieldManagementIcons: function() {
+		
+		for (var index = 0; index < this.fields.length; index++ ) {
+			var field = this.fields[index].fieldVisuals;
+			field.showManagementIcons();
+			field.showPlantingIcon();
+			field.showCrop();
+		}
+	},
+
+	//-----------------------------------------------------------------------
+	hideFieldManagementIcons: function() {
+		
+		for (var index = 0; index < this.fields.length; index++ ) {
+			var field = this.fields[index].fieldVisuals;
+			field.hideManagementIcons();
+			field.hidePlantingIcon();
+			field.hideCrop();
 		}
 	},
 	

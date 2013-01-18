@@ -17,6 +17,7 @@ Ext.define('Biofuels.view.SeasonData', {
 Ext.define('Biofuels.view.FieldData', {
 //------------------------------------------------------------------------------
 
+	// TEMP: Whips up some FAKE data
     //--------------------------------------------------------------------------
 	constructor: function (config) {
 		this.seasons = new Array();
@@ -26,78 +27,111 @@ Ext.define('Biofuels.view.FieldData', {
 			
 			var rand = Math.floor(Math.random() * 3);
 
+			var useFertilizer = false;
+			if (Math.floor(Math.random() * 3) >= 1) {
+				useFertilizer = true;
+			};
+			var useIrrigation = false;
+			if (Math.floor(Math.random() * 2) >= 1) {
+				useIrrigation = true;
+			};
+			
 			if (rand == 0) {
 				this.seasons.push({
 					crop: 'corn',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth -= 2;
 
 				this.seasons.push({
 					crop: 'corn',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: useFertilizer,
+					irrigation: useIrrigation
+				});
+				soilHealth -= 2; if (useFertilizer) soilHealth -= 1;
+				
+				this.seasons.push({
+					crop: 'corn',
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth -= 2;
 				
 				this.seasons.push({
 					crop: 'corn',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: useFertilizer,
+					irrigation: useIrrigation
 				});
-				soilHealth -= 2;
-				
-				this.seasons.push({
-					crop: 'corn',
-					soil: soilHealth
-				});
-				soilHealth -= 2;
+				soilHealth -= 2; if (useFertilizer) soilHealth -= 1;
 			}
 			else if (rand == 1) {
 				this.seasons.push({
 					crop: 'switchgrass',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth += 1;
 
 				this.seasons.push({
 					crop: 'switchgrass',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth += 2;
 				
 				this.seasons.push({
 					crop: 'switchgrass',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth += 2;
 				
 				this.seasons.push({
 					crop: 'switchgrass',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth += 1;
 			}
 			else {
 				this.seasons.push({
-					crop: 'fallow',
-					soil: soilHealth
+					crop: 'coverCrop',
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: false
 				});
 				soilHealth += 1;
 				
 				this.seasons.push({
-					crop: 'fallow',
-					soil: soilHealth
+					crop: 'coverCrop',
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: false
 				});
 				soilHealth += 1;
 				
 				this.seasons.push({
 					crop: 'corn',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth -= 2;
 				
 				this.seasons.push({
 					crop: 'corn',
-					soil: soilHealth
+					soil: soilHealth,
+					fertilizer: false,
+					irrigation: useIrrigation
 				});
 				soilHealth -= 2;
 			}
