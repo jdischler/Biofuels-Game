@@ -18,7 +18,7 @@ Ext.define('Biofuels.view.RoundStageBar', {
 			fill: '#000',
 			opacity: '0.5',
     		x: 80,
-    		y: 24,
+    		y: 34,
     		width: 340,
     		height: 3
     	},{
@@ -26,7 +26,7 @@ Ext.define('Biofuels.view.RoundStageBar', {
 			fill: '#fff',
 			opacity: '0.25',
     		x: 80,
-    		y: 26,
+    		y: 36,
     		width: 340,
     		height: 1
     	}
@@ -37,21 +37,21 @@ Ext.define('Biofuels.view.RoundStageBar', {
 			fill: '#000',
 			opacity: '0.5',
 			x: 80,
-			y: 25,
+			y: 35,
 			radius: 15
     	},{
 			type: 'circle',
 			fill: '#fff',
 			opacity: '0.5',
 			x: 80,
-			y: 27,
+			y: 37,
 			radius: 15
     	},{
 			type: 'circle',
 			fill: '#164028',
 			opacity: '0.75',
 			x: 80,
-			y: 26,
+			y: 36,
 			radius: 14
     	},{
     		type: 'text',
@@ -59,14 +59,14 @@ Ext.define('Biofuels.view.RoundStageBar', {
     		fill: '#000',
     		font: "16px monospace",
     		x: 40,
-    		y: 54
+    		y: 64
     	},{
     		type: 'text',
     		text: "Contracts",
     		fill: '#fff',
     		font: "16px monospace",
     		x: 40,
-    		y: 52
+    		y: 62
     	}
     	,
     	
@@ -75,21 +75,21 @@ Ext.define('Biofuels.view.RoundStageBar', {
 			fill: '#000',
 			opacity: '0.5',
 			x: 250,
-			y: 25,
+			y: 35,
 			radius: 15
     	},{
 			type: 'circle',
 			fill: '#fff',
 			opacity: '0.5',
 			x: 250,
-			y: 27,
+			y: 37,
 			radius: 15
     	},{
 			type: 'circle',
 			fill: '#164028',
 			opacity: '0.75',
 			x: 250,
-			y: 26,
+			y: 36,
 			radius: 14
     	},{
     		type: 'text',
@@ -97,14 +97,14 @@ Ext.define('Biofuels.view.RoundStageBar', {
     		fill: '#000',
     		font: "16px monospace",
     		x: 200,
-    		y: 54
+    		y: 64
     	},{
     		type: 'text',
     		text: "Plant Crops",
     		fill: '#fff',
     		font: "16px monospace",
     		x: 200,
-    		y: 52
+    		y: 62
     	}
     	
     	,
@@ -113,21 +113,21 @@ Ext.define('Biofuels.view.RoundStageBar', {
 			fill: '#000',
 			opacity: '0.5',
     		x: 420,
-    		y: 25,
+    		y: 35,
     		radius: 15
     	},{
 			type: 'circle',
 			fill: '#fff',
 			opacity: '0.5',
 			x: 420,
-			y: 27,
+			y: 37,
 			radius: 15
     	},{
 			type: 'circle',
 			fill: '#164028',
 			opacity: '0.75',
 			x: 420,
-			y: 26,
+			y: 36,
 			radius: 14
     	},{
     		type: 'text',
@@ -135,14 +135,14 @@ Ext.define('Biofuels.view.RoundStageBar', {
     		fill: '#000',
     		font: "16px monospace",
     		x: 355,
-    		y: 54
+    		y: 64
     	},{
     		type: 'text',
     		text: "Round Wrap-Up",
     		fill: '#fff',
     		font: "16px monospace",
     		x: 355,
-    		y: 52
+    		y: 62
     	}];
     	
   		var result = surface.add(config);
